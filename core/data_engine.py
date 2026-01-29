@@ -9,7 +9,7 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
 class VOCDataEngine:
-    def __init__(self, root_path, batch_size=16, num_workers=2):
+    def __init__(self, root_path, batch_size=16, num_workers=2, resolution=256):
         self.root_path = root_path
         self.batch_size = batch_size
         self.num_workers = num_workers
@@ -42,14 +42,14 @@ class VOCDataEngine:
             mode='train', 
             root_path=self.root_path, 
             class_rgb_values=self.VOC_COLORMAP,
-            resolution=256,
+            resolution=resolution,
             augmentation=self.get_transforms(train=True)
         )
         val_ds = VOCDataset(
             mode='val', 
             root_path=self.root_path, 
             class_rgb_values=self.VOC_COLORMAP,
-            resolution=256,
+            resolution=resolution,
             augmentation=self.get_transforms(train=False)
         )
 
