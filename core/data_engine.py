@@ -13,6 +13,7 @@ class VOCDataEngine:
         self.root_path = root_path
         self.batch_size = batch_size
         self.num_workers = num_workers
+        self.resolution = resolution
         
         # Color Map is now internal - no more copy-pasting it!
         self.VOC_COLORMAP = [[0, 0, 0], [128, 0, 0], [0, 128, 0], [128, 128, 0],
@@ -42,14 +43,14 @@ class VOCDataEngine:
             mode='train', 
             root_path=self.root_path, 
             class_rgb_values=self.VOC_COLORMAP,
-            resolution=resolution,
+            resolution=self.resolution,
             augmentation=self.get_transforms(train=True)
         )
         val_ds = VOCDataset(
             mode='val', 
             root_path=self.root_path, 
             class_rgb_values=self.VOC_COLORMAP,
-            resolution=resolution,
+            resolution=self.resolution,
             augmentation=self.get_transforms(train=False)
         )
 
