@@ -1,14 +1,21 @@
 import torch.nn as nn
 
 class MulticlassIOU(nn.Module):
+    """Computes Intersection over Union (IoU) for multiclass semantic segmentation."""
     def __init__(self, num_classes):
+        """Initializes the metric with the total number of dataset classes."""
         super().__init__()
         self.num_classes = num_classes
 
     def forward(self, pred_mask, target_mask):
         """
-        pred_logits: [Batch, 21, H, W] (Output of the model)
-        target_mask: [Batch, H, W]     (Ground Truth)
+        Calculates IoU by comparing predicted class indices against ground truth.
+        
+        Args:
+            pred_mask (torch.Tensor): Predicted class indices [Batch, H, W]
+            target_mask (torch.Tensor): Ground truth class indices [Batch, H, W]
+        Returns:
+            torch.Tensor: Scalar IoU value for the first detected class in the target.
         """
 
         # Loop over every class
