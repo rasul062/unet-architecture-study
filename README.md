@@ -1,5 +1,5 @@
 # unet-architecture-study
-This project documents a 4-stage architectural journey to solve semantic segmentation on PASCAL VOC dataset. Rather than jumping straight to a complex model, I evolved the architecture to solve specific failure modules identified through deep model inspection.
+This project documents a 4-stage architectural journey to solve semantic segmentation on PASCAL VOC dataset(approximately 2-3 k images). Rather than jumping straight to a complex model, I evolved the architecture to solve specific failure modules identified through deep model inspection.
 
 # Stage 1: Weighted Cross-Entropy Loss (UnetV1)
 - **The Result:** The model identifies the train's location but suffers from **extreme class hallucination.** Because the loss function treats miclassifying target class pixels the same as misclassifying background pixels, it predicts rare textures (red/pink masks) inside the train body. It lacks the "discipline" to distinguish between similar semantic features.
